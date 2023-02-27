@@ -10,9 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
+// Questions for manager
 const managerQ = [
     {
         type: 'input',
@@ -40,6 +38,38 @@ const managerQ = [
     },
 ];
 
+//Prompt questions for engineer
+const engineerQ = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: `What is your engineer's name?\nAnswer: `,
+            name: 'engineerName',
+            validate: response => response.length > 0 ? true : 'Please enter valid engineer name'
+        },
+        {
+            type: 'input',
+            message: `What is your engineer's ID?\nAnswer: `,
+            name: 'engineerID',
+            validate: response => response.length > 0 && !isNaN(response) ? true : 'Please enter valid engineer ID number'
+        },
+        {
+            type: 'input',
+            message: `What is your engineer's email?\nAnswer: `,
+            name: 'engineerEmail',
+            validate: response => response.length > 0 ? true : 'Please enter valid engineer email'
+        },
+        {
+            type: 'input',
+            message: `What is your engineer's GitHub username?\nAnswer: `,
+            name: 'enginnerGithub',
+            validate: response => response.length > 0 ? true : 'Please enter valid engineer GitHub username'
+        }
+    ]).then(response => {
+        const engineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.enginnerGithub);
+        addMember();
+    })
+}
 
 const addMember = () => {
     inquirer.prompt([
@@ -59,10 +89,10 @@ const addMember = () => {
                 }
             ]
         }
-    ]).then(answer => {
-        if (answer.toAdd === 'Engineer') {
-
-        } else if (answer.toAdd === 'Intern') {
+    ]).then(response => {
+        if (response.toAdd === 'Engineer') {
+            engineerQ();
+        } else if (response.toAdd === 'Intern') {
 
         } else {
 
