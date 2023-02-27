@@ -1,0 +1,30 @@
+{
+  "name": "build_team_profile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarKubil/Build_Team_Profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarKubil/Build_Team_Profile/issues"
+  },
+  "homepage": "https://github.com/MarKubil/Build_Team_Profile#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
