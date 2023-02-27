@@ -38,7 +38,7 @@ const managerQ = [
     },
 ];
 
-//Prompt questions for engineer
+// Prompt questions for engineer
 const engineerQ = () => {
     inquirer.prompt([
         {
@@ -69,31 +69,55 @@ const engineerQ = () => {
         const engineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.enginnerGithub);
         addMember();
     })
-}
+};
 
+// Prompt questions for intern
+const internQ = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            message: `What is your intern's name?\nAnswer: `,
+            name: 'internName',
+            validate: response => response.length > 0 ? true : 'Please enter valid intern name'
+        },
+        {
+            type: 'input',
+            message: `What is your intern's ID?\nAnswer: `,
+            name: 'internID',
+            validate: response => response.length > 0 && !isNaN(response) ? true : 'Please enter valid intern ID number'
+        },
+        {
+            type: 'input',
+            message: `What is your intern's email?\nAnswer: `,
+            name: 'internEmail',
+            validate: response => response.length > 0 ? true : 'Please enter valid intern email'
+        },
+        {
+            type: 'input',
+            message: `What is your intern's school?\nAnswer: `,
+            name: 'internSchool',
+            validate: response => response.length > 0 ? true : 'Please enter valid intern school'
+        }
+    ]).then(response => {
+        const intern = new Intern(response.internName, response.internID, response.internEmail, response.internSchool);
+        addMember();
+    })
+};
+
+// Promp question for user does he wants to add more team members
 const addMember = () => {
     inquirer.prompt([
         {
             name: 'toAdd',
             type: 'list',
             message: `Which type of team member would you like to add?`,
-            choices: [
-                {
-                    name: 'Engineer',
-                },
-                {
-                    name: 'Intern',
-                },
-                {
-                    name: `I don't want to add any more team members`,
-                }
-            ]
+            choices: ['Engineer', 'Intern', `I don't want to add any more team members`]
         }
     ]).then(response => {
         if (response.toAdd === 'Engineer') {
             engineerQ();
         } else if (response.toAdd === 'Intern') {
-
+            internQ();
         } else {
 
         }
