@@ -4,11 +4,15 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const { existsSync } = require('fs');
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+
+const teamMembers = [];
+
 
 // Questions for manager
 const managerQ = [
@@ -67,6 +71,7 @@ const engineerQ = () => {
         }
     ]).then(response => {
         const engineer = new Engineer(response.engineerName, response.engineerID, response.engineerEmail, response.enginnerGithub);
+        teamMembers.push(engineer);
         addMember();
     })
 };
@@ -100,6 +105,7 @@ const internQ = () => {
         }
     ]).then(response => {
         const intern = new Intern(response.internName, response.internID, response.internEmail, response.internSchool);
+        teamMembers.push(intern);
         addMember();
     })
 };
@@ -119,7 +125,19 @@ const addMember = () => {
         } else if (response.toAdd === 'Intern') {
             internQ();
         } else {
-
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    message: `What is your team name?`,
+                    name: 'teamName'
+                }
+            ]).then(response => {
+                const teamName = response.teamName;
+                if (!existsSync(OUTPUT_DIR)) {
+                    fs.mkdirSync(OUTPUT_DIR)
+                };
+                fs.writeFile(outputPath, render(teamMembers, teamName), error => error ? console.error(error) : console.log("Your team page was created!"));
+            })
         }
     })
 };
@@ -127,6 +145,6 @@ const addMember = () => {
 
 inquirer.prompt([...managerQ]).then(response => {
     const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNum);
-
+    teamMembers.push(manager);
     addMember();
 });

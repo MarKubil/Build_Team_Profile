@@ -4,8 +4,12 @@ const generateTeam = team => {
     // creates the manager html
     const generateManager = manager => {
         return `
-        <div class="card employee-card">
-        <div class="card-header">
+        <div class="card employee-card m-1 col-md-4 col-lg-3">
+        <div class="card-header" style="
+                background-image: url('https://img.freepik.com/free-vector/modern-flowing-colorful-wave-banner-background_1035-19861.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 5%;">
             <h2 class="card-title">${manager.getName()}</h2>
             <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
         </div>
@@ -23,8 +27,12 @@ const generateTeam = team => {
     // creates the html for engineers
     const generateEngineer = engineer => {
         return `
-        <div class="card employee-card">
-    <div class="card-header">
+        <div class="card employee-card m-1 col-md-4 col-lg-3">
+        <div class="card-header" style="
+                background-image: url('https://img.freepik.com/free-vector/modern-flowing-colorful-wave-banner-background_1035-19861.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 5%;">
         <h2 class="card-title">${engineer.getName()}</h2>
         <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
     </div>
@@ -42,8 +50,12 @@ const generateTeam = team => {
     // creates the html for interns
     const generateIntern = intern => {
         return `
-        <div class="card employee-card">
-    <div class="card-header">
+        <div class="card employee-card m-1 col-md-4 col-lg-3">
+        <div class="card-header" style="
+                background-image: url('https://img.freepik.com/free-vector/modern-flowing-colorful-wave-banner-background_1035-19861.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 5%;">
         <h2 class="card-title">${intern.getName()}</h2>
         <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
     </div>
@@ -80,7 +92,7 @@ const generateTeam = team => {
 }
 
 // exports function to generate entire page
-module.exports = team => {
+module.exports = (teamMembers, teamName) => {
 
     return `
     <!DOCTYPE html>
@@ -90,7 +102,7 @@ module.exports = team => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>My Team</title>
+    <title>${teamName}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -98,20 +110,22 @@ module.exports = team => {
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
-                ${generateTeam(team)}
-            </div>
-        </div>
-    </div>
+    <header class="container-fluid">
+        <section class="row justify-content-center ">
+        <article  style="
+        background-image: url('https://img.freepik.com/free-vector/modern-flowing-blue-wave-banner-background_1035-19862.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;"
+        class="col-12 jumbotron mb-3 team-heading">
+                <h1 style="font-size: 3rem; font-family: 'Tilt Warp', cursive;" class="text-center">${teamName}</h1>
+            </article>
+        </section>
+    </header>
+    <main class="container-fluid">
+        <section class="row justify-content-center">
+                ${generateTeam(teamMembers)}
+        </section>
+    </main>
 </body>
 </html>
     `;
