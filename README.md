@@ -7,6 +7,7 @@ This is Command Line Interface application that creates html page containing inf
 
 ## Table of content
 - [Installation](#Installation)
+
 - [Usage](#Usage)
 - [License](#License)
 - [Tests](#Tests)
@@ -15,9 +16,9 @@ This is Command Line Interface application that creates html page containing inf
 ## Images of my application
 
 #### Command line interface
-![CLI](./images/CLI.JPG)
+![start](./images/CLI.jpg)
 #### Screenshot of HTML result page
-![screenshot](./images/Finished.JPG)
+![screenshot](./images/Finished.jpg)
 
 ## Installation
 You have to have node.js installed on your machine
