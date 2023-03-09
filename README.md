@@ -16,9 +16,9 @@ This is Command Line Interface application that creates html page containing inf
 ## Images of my application
 
 #### Command line interface
-![start](./images/CLI.jpg)
+![start](./images/CLI.JPG)
 #### Screenshot of HTML result page
-![screenshot](./images/Finished.jpg)
+![screenshot](./images/Finished.JPG)
 
 ## Installation
 You have to have node.js installed on your machine
